@@ -1,22 +1,257 @@
-
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>缝纫机图片浏览页面</title>
+    <title>生产指令单输入系统</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>缝纫机图片浏览页面</h1>
+        <div class="header-left">
+            <label for="currentDate">选择日期:</label>
+            <input type="date" id="currentDate">
+        </div>
+        <div class="header-center">
+            <h1>生产指令单输入系统</h1>
+        </div>
     </header>
-    <div class="gallery" id="gallery">
-        <!-- 图片将通过 JavaScript 动态添加 -->
+    <div class="container">
+        <form id="dataEntryForm">
+            <div class="input-block">
+                <div class="row">
+                    <div class="input-group">
+                        <label for="orderNumber">指令单号:</label>
+                        <input type="text" id="orderNumber" name="orderNumber" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="customerCode">客户代号:</label>
+                        <input type="text" id="customerCode" name="customerCode" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="quantity">订单数量:</label>
+                        <input type="number" id="quantity" name="quantity" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="color">颜色:</label>
+                        <input type="text" id="color" name="color" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-group">
+                        <label for="customerModel">客户型号:</label>
+                        <input type="text" id="customerModel" name="customerModel" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="internalModel">内部型号:</label>
+                        <input type="text" id="internalModel" name="internalModel" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="country">目的国:</label>
+                        <input type="text" id="country" name="country" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="completionDate">完工时间:</label>
+                        <input type="date" id="completionDate" name="completionDate" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-group">
+                        <label for="sewingRequirements">试缝要求:</label>
+                        <textarea id="sewingRequirements" name="sewingRequirements"></textarea>
+                    </div>
+                    <div class="input-group">
+                        <label for="notes">其他注意事项:</label>
+                        <textarea id="notes" name="notes"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="input-block">
+                <h2>外观要求-丝印部分</h2>
+                <div class="row">
+                    <div class="upload-area">
+                        <label for="upload1">上传图片1:</label>
+                        <input type="file" id="upload1" name="upload1" accept="image/*">
+                        <div class="image-preview">
+                            <img id="preview1" src="#" alt="预览图片" style="display: none;">
+                        </div>
+                    </div>
+                    <div class="upload-area">
+                        <label for="upload2">上传图片2:</label>
+                        <input type="file" id="upload2" name="upload2" accept="image/*">
+                        <div class="image-preview">
+                            <img id="preview2" src="#" alt="预览图片" style="display: none;">
+                        </div>
+                    </div>
+                    <div class="upload-area">
+                        <label for="upload3">上传图片3:</label>
+                        <input type="file" id="upload3" name="upload3" accept="image/*">
+                        <div class="image-preview">
+                            <img id="preview3" src="#" alt="预览图片" style="display: none;">
+                        </div>
+                    </div>
+                    <div class="upload-area">
+                        <label for="upload4">上传图片4:</label>
+                        <input type="file" id="upload4" name="upload4" accept="image/*">
+                        <div class="image-preview">
+                            <img id="preview4" src="#" alt="预览图片" style="display: none;">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="upload-area">
+                        <label for="upload5">上传图片5:</label>
+                        <input type="file" id="upload5" name="upload5" accept="image/*">
+                        <div class="image-preview">
+                            <img id="preview5" src="#" alt="预览图片" style="display: none;">
+                        </div>
+                    </div>
+                    <div class="upload-area">
+                        <label for="upload6">上传图片6:</label>
+                        <input type="file" id="upload6" name="upload6" accept="image/*">
+                        <div class="image-preview">
+                            <img id="preview6" src="#" alt="预览图片" style="display: none;">
+                        </div>
+                    </div>
+                    <div class="upload-area">
+                        <label for="upload7">上传图片7:</label>
+                        <input type="file" id="upload7" name="upload7" accept="image/*">
+                        <div class="image-preview">
+                            <img id="preview7" src="#" alt="预览图片" style="display: none;">
+                        </div>
+                    </div>
+                    <div class="upload-area">
+                        <label for="upload8">上传图片8:</label>
+                        <input type="file" id="upload8" name="upload8" accept="image/*">
+                        <div class="image-preview">
+                            <img id="preview8" src="#" alt="预览图片" style="display: none;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="input-block">
+                <h2>外观要求-机身贴纸</h2>
+                <div class="row">
+                    <div class="upload-area">
+                        <label for="upload9">上传图片1:</label>
+                        <input type="file" id="upload9" name="upload9" accept="image/*">
+                        <div class="image-preview">
+                            <img id="preview9" src="#" alt="预览图片" style="display: none;">
+                        </div>
+                    </div>
+                    <div class="upload-area">
+                        <label for="upload10">上传图片2:</label>
+                        <input type="file" id="upload10" name="upload10" accept="image/*">
+                        <div class="image-preview">
+                            <img id="preview10" src="#" alt="预览图片" style="display: none;">
+                        </div>
+                    </div>
+                    <div class="upload-area">
+                        <label for="upload11">上传图片3:</label>
+                        <input type="file" id="upload11" name="upload11" accept="image/*">
+                        <div class="image-preview">
+                            <img id="preview11" src="#" alt="预览图片" style="display: none;">
+                        </div>
+                    </div>
+                    <div class="upload-area">
+                        <label for="upload12">上传图片4:</label>
+                        <input type="file" id="upload12" name="upload12" accept="image/*">
+                        <div class="image-preview">
+                            <img id="preview12" src="#" alt="预览图片" style="display: none;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="input-block">
+                <h2>包装要求</h2>
+                <div class="row">
+                    <div class="upload-area">
+                        <label for="upload13">上传图片1:</label>
+                        <input type="file" id="upload13" name="upload13" accept="image/*">
+                        <div class="image-preview">
+                            <img id="preview13" src="#" alt="预览图片" style="display: none;">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="upload-area">
+                        <label for="upload14">上传图片2:</label>
+                        <input type="file" id="upload14" name="upload14" accept="image/*">
+                        <div class="image-preview">
+                            <img id="preview14" src="#" alt="预览图片" style="display: none;">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="upload-area">
+                        <label for="upload15">上传图片3:</label>
+                        <input type="file" id="upload15" name="upload15" accept="image/*">
+                        <div class="image-preview">
+                            <img id="preview15" src="#" alt="预览图片" style="display: none;">
+                        </div>
+                    </div>
+                    <div class="upload-area">
+                        <label for="upload16">上传图片4:</label>
+                        <input type="file" id="upload16" name="upload16" accept="image/*">
+                        <div class="image-preview">
+                            <img id="preview16" src="#" alt="预览图片" style="display: none;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="input-block">
+                <h2>附件</h2>
+                <table class="attachment-table">
+                    <tr>
+                        <td rowspan="6">附件</td>
+                        <td>适配器</td>
+                        <td colspan="3">
+                            <select id="adapter" name="adapter">
+                                <option value="3C适配器6V">3C适配器6V</option>
+                                <option value="3C适配器12V">3C适配器12V</option>
+                                <option value="欧规6V">欧规6V</option>
+                                <option value="欧规12V">欧规12V</option>
+                                <option value="美规6V">美规6V</option>
+                                <option value="美规12V">美规12V</option>
+                                <option value="日规6V">日规6V</option>
+                                <option value="日规12V">日规12V</option>
+                                <option value="其他">其他</option>
+                            </select>
+                            <input type="text" id="adapterOther" name="adapterOther" style="display: none;" placeholder="请输入其他适配器">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>说明书</td>
+                        <td colspan="3"><input type="text" name="manual"></td>
+                    </tr>
+                    <tr>
+                        <td>脚控器</td>
+                        <td colspan="3"><input type="text" name="footController"></td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3">附件包</td>
+                        <td><input type="text" name="attachmentQuantity1"></td>
+                        <td><input type="text" name="attachmentSpec1"></td>
+                        <td><input type="text" name="attachmentRemark1"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="attachmentQuantity2"></td>
+                        <td><input type="text" name="attachmentSpec2"></td>
+                        <td><input type="text" name="attachmentRemark2"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="attachmentQuantity3"></td>
+                        <td><input type="text" name="attachmentSpec3"></td>
+                        <td><input type="text" name="attachmentRemark3"></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="full-width">
+                <button type="button" id="saveButton">保存</button>
+                <button type="button" id="exportButton">导出</button>
+            </div>
+        </form>
+        <div id="responseMessage"></div>
     </div>
-    <div class="lightbox" id="lightbox">
-        <span class="close" id="closeBtn">&times;</span>
-        <img class="lightbox-img" id="lightboxImg" src="" alt="Large Image">
-    </div>
-    <script src="script.js"></script>
+    <script src="scripts.js"></script>
 </body>
 </html>

@@ -1,47 +1,54 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const gallery = document.getElementById('gallery');
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightboxImg');
-    const closeBtn = document.getElementById('closeBtn');
+document.getElementById('saveButton').addEventListener('click', function() {
+    alert('保存功能尚未实现');
+});
 
-    // Function to fetch random sewing machine images
-    async function fetchImages() {
-        try {
-            const response = await fetch('https://api.unsplash.com/photos/random?query=sewing+machine&count=6&client_id=6eXDvUonrWdNO9_0VuNk72RUcoMJQ5F153j2trZ2K8c');
-            const images = await response.json();
+document.getElementById('exportButton').addEventListener('click', function() {
+    const formData = new FormData(document.getElementById('dataEntryForm'));
 
-            images.forEach(img => {
-                const galleryItem = document.createElement('div');
-                galleryItem.className = 'gallery-item';
-                galleryItem.tabIndex = 0;
-                galleryItem.innerHTML = `<img src="${img.urls.small}" alt="Gallery Image">`;
-                gallery.appendChild(galleryItem);
-            });
+    fetch('generate_pdf.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.blob())
+    .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = '生产指令单.pdf';
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.getElementById('responseMessage').textContent = 'PDF文件已生成并下载。';
+    })
+    .catch(error => {
+        document.getElementById('responseMessage').textContent = 'Error: ' + error.message;
+    });
+});
 
-            // Add event listeners for the new gallery items
-            document.querySelectorAll('.gallery-item').forEach(item => {
-                item.addEventListener('click', () => {
-                    const imgSrc = item.querySelector('img').src;
-                    lightboxImg.src = imgSrc;
-                    lightbox.style.display = 'flex';
-                });
-            });
-
-        } catch (error) {
-            console.error('Error fetching images:', error);
+function previewImage(input, previewElement) {
+    const file = input.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            previewElement.src = e.target.result;
+            previewElement.style.display = 'block';
         }
+        reader.readAsDataURL(file);
     }
+}
 
-    // Fetch images when the page loads
-    fetchImages();
-
-    closeBtn.addEventListener('click', () => {
-        lightbox.style.display = 'none';
+for (let i = 1; i <= 16; i++) {
+    document.getElementById(`upload${i}`).addEventListener('change', function(e) {
+        previewImage(e.target, document.getElementById(`preview${i}`));
     });
+}
 
-    lightbox.addEventListener('click', (e) => {
-        if (e.target !== lightboxImg) {
-            lightbox.style.display = 'none';
-        }
-    });
+document.getElementById('adapter').addEventListener('change', function(e) {
+    const otherInput = document.getElementById('adapterOther');
+    if (e.target.value === '其他') {
+        otherInput.style.display = 'block';
+    } else {
+        otherInput.style.display = 'none';
+    }
 });
